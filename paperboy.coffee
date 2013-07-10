@@ -12,17 +12,14 @@ class @NLPService
 			@status key, ( data ) =>
 				if data.status is 'complete'
 					@get key, ( data ) =>
-						@running[key]
-							status: 'complete'
-							result: data
+						@running[key] data
 						delete @running[key]
-				else
-					@running[key] data
 		window.setTimeout(
 			( ) => @update()
 		, 200 )
 
 	process: ( text, callback, customer = 1 ) ->
+		cb = callback
 		$.ajax
 			url: "http://#{HOST}/api/v1/jobs/start"
 			type: 'POST'
@@ -47,5 +44,5 @@ class @NLPService
 			success: ( data ) => callback( data )
 
 jserv = new @NLPService()
-jserv.process 'My job rocks!', ( data ) ->
-	console.log data.result
+jserv.process 'I\'ve been trying to figure out what kind of lip makeup should I wear (i.e. lip stain, stick, gloss). Also, I want to find a suitable color for my very fair skin.  Most of the time when I wear lip stick it fades rather quickly, especially in the middle and then I\'m left with the color only around my outer lips. I also tend to like a little shine.  What should I use??', ( data ) ->
+	console.log data

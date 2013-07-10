@@ -21,14 +21,9 @@
         this.status(key, function(data) {
           if (data.status === 'complete') {
             return _this.get(key, function(data) {
-              _this.running[key]({
-                status: 'complete',
-                result: data
-              });
+              _this.running[key](data);
               return delete _this.running[key];
             });
-          } else {
-            return _this.running[key](data);
           }
         });
       }
@@ -38,10 +33,12 @@
     };
 
     NLPService.prototype.process = function(text, callback, customer) {
-      var _this = this;
+      var cb,
+        _this = this;
       if (customer == null) {
         customer = 1;
       }
+      cb = callback;
       return $.ajax({
         url: "http://" + HOST + "/api/v1/jobs/start",
         type: 'POST',
@@ -85,8 +82,8 @@
 
   jserv = new this.NLPService();
 
-  jserv.process('My job rocks!', function(data) {
-    return console.log(data.result);
+  jserv.process('I\'ve been trying to figure out what kind of lip makeup should I wear (i.e. lip stain, stick, gloss). Also, I want to find a suitable color for my very fair skin.  Most of the time when I wear lip stick it fades rather quickly, especially in the middle and then I\'m left with the color only around my outer lips. I also tend to like a little shine.  What should I use??', function(data) {
+    return console.log(data);
   });
 
 }).call(this);
