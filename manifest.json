@@ -1,0 +1,24 @@
+{
+  "name": "Paperboy",
+  "version": "0.1",
+  "description": "Runs NLP on content fom the page.",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["zepto.js", "paperboy.js"]
+    }
+  ],
+  "page_action" :
+  {
+    "default_icon" : "icon-19.png",
+    "default_title" : "Paperboy"
+  },
+  "permissions" : [
+    "tabs", "http://*/*"
+  ],
+  "icons" : {
+    "48" : "icon-48.png",
+    "128" : "icon-128.png"
+  },
+  "manifest_version": 2
+}

@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/Users/jack.herrington/projects/paperboy",
+            "file_exclude_patterns": ["*.gitignore","*.png","zepto.js"]
+		}
+	],
+    "settings":
+    {
+        "CoffeeScript":
+        {
+            "noWrapper": true,
+            "compileOnSave": true,
+            "compileDir": "."
+        }
+    }
+}
