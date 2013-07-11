@@ -3,22 +3,43 @@ HOST = 'jack-herrington.vm.lithium.com:8080'
 class @NLPService
 	constructor: ->
 		@running = {}
+		@queue = []
+		@in_process = false
 		window.setTimeout(
 			( ) => @update()
 		, 200 )
 
-	update: ->
-		for key of @running
-			@status key, ( data ) =>
-				if data.status is 'complete'
-					@get key, ( data ) =>
+	update_job: ( key ) ->
+		@status key, ( data ) =>
+			if data.status is 'complete'
+				@get key, ( data ) =>
+					if @running[key]?
 						@running[key] data
 						delete @running[key]
+						@in_process = false
+						@process_queue()
+
+	update: ->
+		for key of @running
+			@update_job( key )
 		window.setTimeout(
 			( ) => @update()
 		, 200 )
 
 	process: ( text, callback, customer = 1 ) ->
+		@queue.push
+			text: text
+			callback: callback
+			customer: customer
+		@process_queue()
+
+	process_queue: ( ) ->
+		return if @in_process or @queue.length is 0
+		job = @queue.shift()
+		@start_job job.text, job.callback, job.customer
+
+	start_job: ( text, callback, customer ) ->
+		@in_process = true
 		cb = callback
 		$.ajax
 			url: "http://#{HOST}/api/v1/jobs/start"
@@ -44,5 +65,3 @@ class @NLPService
 			success: ( data ) => callback( data )
 
 jserv = new @NLPService()
-jserv.process 'I\'ve been trying to figure out what kind of lip makeup should I wear (i.e. lip stain, stick, gloss). Also, I want to find a suitable color for my very fair skin.  Most of the time when I wear lip stick it fades rather quickly, especially in the middle and then I\'m left with the color only around my outer lips. I also tend to like a little shine.  What should I use??', ( data ) ->
-	console.log data

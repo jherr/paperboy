@@ -9,23 +9,34 @@
     function NLPService() {
       var _this = this;
       this.running = {};
+      this.queue = [];
+      this.in_process = false;
       window.setTimeout(function() {
         return _this.update();
       }, 200);
     }
 
+    NLPService.prototype.update_job = function(key) {
+      var _this = this;
+      return this.status(key, function(data) {
+        if (data.status === 'complete') {
+          return _this.get(key, function(data) {
+            if (_this.running[key] != null) {
+              _this.running[key](data);
+              delete _this.running[key];
+              _this.in_process = false;
+              return _this.process_queue();
+            }
+          });
+        }
+      });
+    };
+
     NLPService.prototype.update = function() {
       var key,
         _this = this;
       for (key in this.running) {
-        this.status(key, function(data) {
-          if (data.status === 'complete') {
-            return _this.get(key, function(data) {
-              _this.running[key](data);
-              return delete _this.running[key];
-            });
-          }
-        });
+        this.update_job(key);
       }
       return window.setTimeout(function() {
         return _this.update();
@@ -33,11 +44,30 @@
     };
 
     NLPService.prototype.process = function(text, callback, customer) {
-      var cb,
-        _this = this;
       if (customer == null) {
         customer = 1;
       }
+      this.queue.push({
+        text: text,
+        callback: callback,
+        customer: customer
+      });
+      return this.process_queue();
+    };
+
+    NLPService.prototype.process_queue = function() {
+      var job;
+      if (this.in_process || this.queue.length === 0) {
+        return;
+      }
+      job = this.queue.shift();
+      return this.start_job(job.text, job.callback, job.customer);
+    };
+
+    NLPService.prototype.start_job = function(text, callback, customer) {
+      var cb,
+        _this = this;
+      this.in_process = true;
       cb = callback;
       return $.ajax({
         url: "http://" + HOST + "/api/v1/jobs/start",
@@ -81,9 +111,5 @@
   })();
 
   jserv = new this.NLPService();
-
-  jserv.process('I\'ve been trying to figure out what kind of lip makeup should I wear (i.e. lip stain, stick, gloss). Also, I want to find a suitable color for my very fair skin.  Most of the time when I wear lip stick it fades rather quickly, especially in the middle and then I\'m left with the color only around my outer lips. I also tend to like a little shine.  What should I use??', function(data) {
-    return console.log(data);
-  });
 
 }).call(this);
