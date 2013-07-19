@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"start",
+				"start_job"
+			],
+			[
 				"fin",
 				"final_date"
 			],
@@ -215,7 +219,7 @@
 	"build_system": "Packages/CoffeeScript/CoffeeScript.sublime-build",
 	"command_palette":
 	{
-		"height": 48.0,
+		"height": 288.0,
 		"selected_items":
 		[
 			[
@@ -280,12 +284,20 @@
 	},
 	"file_history":
 	[
-		"/Users/jack.herrington/Library/Application Support/Sublime Text 3/Packages/User/CoffeeScript.sublime-settings",
-		"/Users/jack.herrington/projects/paperboy/manifest.json",
+		"/Users/jack.herrington/projects/paperboy/devtoolsBackground.html",
+		"/Users/jack.herrington/projects/paperboy/panelApp.coffee",
+		"/Users/jack.herrington/projects/paperboy/panel.html",
+		"/Users/jack.herrington/projects/paperboy/devtoolsBackground.coffee",
 		"/Users/jack.herrington/projects/paperboy/paperboy.coffee",
+		"/Users/jack.herrington/projects/paperboy/paperboy.js",
+		"/Users/jack.herrington/projects/paperboy/manifest.json",
+		"/Users/jack.herrington/projects/paperboy/devtools.js",
+		"/Users/jack.herrington/projects/paperboy/background.html",
+		"/Users/jack.herrington/projects/paperboy2/paperboy.coffee",
+		"/Users/jack.herrington/projects/paperboy/paperboy.coffee.js",
+		"/Users/jack.herrington/Library/Application Support/Sublime Text 3/Packages/User/CoffeeScript.sublime-settings",
 		"/Users/jack.herrington/projects/paperboy/Paperboy.sublime-project",
 		"/Users/jack.herrington/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/jack.herrington/projects/paperboy/paperboy.js",
 		"/Users/jack.herrington/projects/paperboy/background.js",
 		"/Users/jack.herrington/projects/thumper/notes/TODO.txt",
 		"/Users/jack.herrington/projects/thumper/thumper.sublime-project",
@@ -399,15 +411,7 @@
 		"/Users/jack.herrington/labs/active/paperboy/app/controllers/api/v1/customers/terms_controller.rb",
 		"/Users/jack.herrington/labs/active/paperboy/app/controllers/customers_controller.rb",
 		"/Users/jack.herrington/labs/active/paperboy/app/models/customer.rb",
-		"/Users/jack.herrington/labs/active/paperboy/db/migrate/20130410195617_initial.rb",
-		"/Users/jack.herrington/labs/active/paperboy/app/models/term.rb",
-		"/Users/jack.herrington/labs/active/paperboy/app/models/document.rb",
-		"/Users/jack.herrington/labs/active/paperboy/db/seeds.rb",
-		"/Users/jack.herrington/labs/active/paperboy/app/models/category.rb",
-		"/Users/jack.herrington/labs/active/paperboy/paperboy.sublime-project",
-		"/Users/jack.herrington/labs/active/paperboy/app/models/client.rb",
-		"/Users/jack.herrington/labs/active/paperboy/config/database.yml",
-		"/Users/jack.herrington/Desktop/findDependency.py"
+		"/Users/jack.herrington/labs/active/paperboy/db/migrate/20130410195617_initial.rb"
 	],
 	"find":
 	{
@@ -426,6 +430,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"window.nlpData",
+			"window.nlpIndex",
+			"color",
+			"JOb",
+			"jack-herrington.vm.lithium.com:8080",
 			"status",
 			"renewal",
 			"renenw",
@@ -548,12 +557,7 @@
 			"bloom",
 			"Hiligh",
 			"metrics",
-			"selectpick",
-			"select",
-			"message_vi",
-			"signal",
-			"|date:shortDate",
-			"hilightstart"
+			"selectpick"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -622,7 +626,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"project": "Paperboy.sublime-project",
 	"replace":

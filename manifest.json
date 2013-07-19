@@ -1,21 +1,29 @@
 {
   "name": "Paperboy",
-  "version": "0.1",
-  "description": "Runs NLP on content fom the page.",
+  "version": "0.41",
+  "description": "Provides integration with NLP analysis engine.",
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [
+    "tabs",
+    "<all_urls>"
+  ],
   "content_scripts": [
     {
-      "matches": ["http://*/*"],
-      "js": ["zepto.js", "paperboy.js"]
+      "matches": ["<all_urls>"],
+      "js": ["zepto.js", "paperboy.js"],
+      "run_at": "document_end"
     }
   ],
-  "page_action" :
-  {
-    "default_icon" : "icon-19.png",
-    "default_title" : "Paperboy"
+  "page_action": {
+    "default_icon": {
+      "19": "icon-19.png",
+      "38": "icon-38.png"
+    },
+    "default_title": "NLP",
+    "default_popup": "popup.html"
   },
-  "permissions" : [
-    "tabs", "http://*/*"
-  ],
   "icons" : {
     "48" : "icon-48.png",
     "128" : "icon-128.png"
