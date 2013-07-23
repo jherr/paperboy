@@ -26,6 +26,7 @@ processText = ( el ) =>
 	text = $(el).text()
 	text = text.replace( /^\s+/, '' )
 	text = text.replace( /\s+$/, '' )
+	text = text.replace( /\s+/g, ' ' )
 
 	return unless text.length > 0
 

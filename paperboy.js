@@ -43,6 +43,7 @@
     text = $(el).text();
     text = text.replace(/^\s+/, '');
     text = text.replace(/\s+$/, '');
+    text = text.replace(/\s+/g, ' ');
     if (!(text.length > 0)) {
       return;
     }

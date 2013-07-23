@@ -71,6 +71,7 @@
     NLPService.prototype.start_job = function(text, additional_rules, callback, customer) {
       var cb,
         _this = this;
+      console.log(text);
       this.in_process = true;
       cb = callback;
       return $.ajax({
@@ -106,6 +107,7 @@
         url: "http://" + HOST + "/api/v1/jobs/get/" + job_id,
         type: 'GET',
         success: function(data) {
+          console.log(data);
           return callback(data);
         }
       });

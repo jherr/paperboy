@@ -42,6 +42,7 @@ class NLPService
 		@start_job job.text, job.additional_rules, job.callback, job.customer
 
 	start_job: ( text, additional_rules, callback, customer ) ->
+		console.log text
 		@in_process = true
 		cb = callback
 		$.ajax
@@ -66,7 +67,9 @@ class NLPService
 		$.ajax
 			url: "http://#{HOST}/api/v1/jobs/get/#{job_id}"
 			type: 'GET'
-			success: ( data ) => callback( data )
+			success: ( data ) =>
+				console.log data
+				callback( data )
 
 window.nlp =
 	result: null
